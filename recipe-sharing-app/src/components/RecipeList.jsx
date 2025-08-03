@@ -3,11 +3,12 @@ import { useRecipeStore } from './recipeStore';
 import DeleteRecipeButton from './DeleteRecipeButton';
 
 const RecipeList = () => {
-  const recipes = useRecipeStore((state) => state.filteredRecipes);
-  const searchTerm = useRecipeStore((state) => state.searchTerm);
-  const filterRecipes = useRecipeStore((state) => state.filterRecipes);
+  const { filteredRecipes, searchTerm, filterRecipes } = useRecipeStore((state) => ({
+    filteredRecipes: state.filteredRecipes,
+    searchTerm: state.searchTerm,
+    filterRecipes: state.filterRecipes,
+  }));
 
-  // Trigger filtering whenever searchTerm changes
   useEffect(() => {
     filterRecipes(searchTerm);
   }, [searchTerm, filterRecipes]);
@@ -16,7 +17,7 @@ const RecipeList = () => {
     <div>
       <h2>📋 Recipe List</h2>
       <ul>
-        {recipes.map((recipe) => (
+        {filteredRecipes.map((recipe) => (
           <li key={recipe.id}>
             <h3>{recipe.title}</h3>
             <p>{recipe.description}</p>
