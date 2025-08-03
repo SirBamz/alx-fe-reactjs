@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useRecipeStore } from './recipeStore';
 import DeleteRecipeButton from './DeleteRecipeButton';
 
 const RecipeList = () => {
-  const recipes = useRecipeStore((state) => state.filteredRecipes.length > 0 ? state.filteredRecipes : state.recipes);
+  const recipes = useRecipeStore((state) => state.filteredRecipes);
+  const searchTerm = useRecipeStore((state) => state.searchTerm);
+  const filterRecipes = useRecipeStore((state) => state.filterRecipes);
+
+  // Trigger filtering whenever searchTerm changes
+  useEffect(() => {
+    filterRecipes(searchTerm);
+  }, [searchTerm, filterRecipes]);
 
   return (
     <div>
