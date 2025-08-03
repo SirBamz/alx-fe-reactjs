@@ -1,33 +1,25 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useRecipeStore } from './recipeStore';
 import DeleteRecipeButton from './DeleteRecipeButton';
+import { Link } from 'react-router-dom'; // Import Link
 
 const RecipeList = () => {
-  const recipes = useRecipeStore((state) => state.filteredRecipes);
-  const searchTerm = useRecipeStore((state) => state.searchTerm);
-  const allRecipes = useRecipeStore((state) => state.recipes);
-  const filterRecipes = useRecipeStore((state) => state.filterRecipes);
-
-  // Trigger filtering whenever searchTerm or recipes change
-  useEffect(() => {
-    filterRecipes();
-  }, [searchTerm, allRecipes, filterRecipes]);
+  const recipes = useRecipeStore((state) => state.filteredRecipes.length > 0 ? state.filteredRecipes : state.recipes);
 
   return (
     <div>
       <h2>📋 Recipe List</h2>
       <ul>
-        {recipes.length === 0 ? (
-          <li>No recipes found.</li>
-        ) : (
-          recipes.map((recipe) => (
-            <li key={recipe.id}>
+        {recipes.map((recipe) => (
+          <li key={recipe.id}>
+            {/* Wrap the recipe title in a Link component */}
+            <Link to={`/recipes/${recipe.id}`}>
               <h3>{recipe.title}</h3>
-              <p>{recipe.description}</p>
-              <DeleteRecipeButton id={recipe.id} />
-            </li>
-          ))
-        )}
+            </Link>
+            <p>{recipe.description}</p>
+            <DeleteRecipeButton id={recipe.id} />
+          </li>
+        ))}
       </ul>
     </div>
   );
