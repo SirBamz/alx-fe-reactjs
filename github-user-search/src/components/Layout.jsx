@@ -1,5 +1,4 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
 
 const Layout = () => {
   return (
@@ -11,7 +10,7 @@ const Layout = () => {
         </nav>
       </header>
       <main>
-        <Outlet /> {}
+        
       </main>
       <footer>
         <p>&copy; GitHub User Search 2025</p>
@@ -19,5 +18,6 @@ const Layout = () => {
     </div>
   );
 };
+
 
 export default Layout;
