@@ -18,7 +18,7 @@ const RegistrationForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!form.username || !form.email || !form.password) {
+    if (!username || !email || !password) {
       setError('All fields are required.');
       return;
     }
@@ -36,7 +36,7 @@ const RegistrationForm = () => {
         <input
           type="text"
           name="username"
-          value={form.username}
+          value={username}
           onChange={handleChange}
         />
       </div>
@@ -45,7 +45,7 @@ const RegistrationForm = () => {
         <input
           type="email"
           name="email"
-          value={form.email}
+          value={email}
           onChange={handleChange}
         />
       </div>
@@ -54,7 +54,7 @@ const RegistrationForm = () => {
         <input
           type="password"
           name="password"
-          value={form.password}
+          value={password}
           onChange={handleChange}
         />
       </div>
