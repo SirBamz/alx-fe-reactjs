@@ -6,7 +6,7 @@ function fetchPosts() {
 }
 
 export default function PostsComponent() {
-  const { data, isError, isLoading, refetch, isFetching } = useQuery('posts', fetchPosts);
+  const { data, error, isLoading, refetch, isFetching } = useQuery('posts', fetchPosts);
   const [lastFetched, setLastFetched] = useState(null);
 
   const handleRefetch = async () => {
@@ -35,3 +35,4 @@ export default function PostsComponent() {
     </div>
   );
 }
+
