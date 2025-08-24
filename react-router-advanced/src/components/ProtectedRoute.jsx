@@ -7,4 +7,5 @@ function ProtectedRoute({ isAuthenticated, children }) {
   return children;
 }
 
+
 export default ProtectedRoute;
