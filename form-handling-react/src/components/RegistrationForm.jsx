@@ -1,0 +1,66 @@
+import React, { useState } from 'react';
+
+const RegistrationForm = () => {
+  const [form, setForm] = useState({
+    username: '',
+    email: '',
+    password: '',
+  });
+  const [error, setError] = useState('');
+
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+    setError('');
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!form.username || !form.email || !form.password) {
+      setError('All fields are required.');
+      return;
+    }
+    // Submit logic here (e.g., API call)
+    alert('Registration successful!');
+    setForm({ username: '', email: '', password: '' });
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <h2>Register</h2>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+      <div>
+        <label>Username:</label>
+        <input
+          type="text"
+          name="username"
+          value={form.username}
+          onChange={handleChange}
+        />
+      </div>
+      <div>
+        <label>Email:</label>
+        <input
+          type="email"
+          name="email"
+          value={form.email}
+          onChange={handleChange}
+        />
+      </div>
+      <div>
+        <label>Password:</label>
+        <input
+          type="password"
+          name="password"
+          value={form.password}
+          onChange={handleChange}
+        />
+      </div>
+      <button type="submit">Register</button>
+    </form>
+  );
+};
+
+export default RegistrationForm;
