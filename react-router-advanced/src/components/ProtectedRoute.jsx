@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom';
-// import your custom useAuth hook
+
 import useAuth from '../hooks/useAuth';
 
 function ProtectedRoute({ children }) {
@@ -12,3 +12,4 @@ function ProtectedRoute({ children }) {
 }
 
 export default ProtectedRoute;
+
